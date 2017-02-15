@@ -330,6 +330,16 @@ The selector `.headline` matches all HTML elements with an Attribute `class="hea
 }
 ```
 
+The following code will make all text on the website display in the `Arial` font.
+
+```
+body {
+  font-family: 'Arial', Helvetica, sans-serif;
+}
+```
+
+If the Arial font is not available, the Helvetica font is used. If this font is also not available, the system default `sans-serif` font is used.
+
 CSS can be placed inside a file with the file extension `css`, `style.css` for example. It can also be placed inside the `<head>` of a website. For our first example, we will place it inside the `<head>`.
 
 ### Create a new test page
@@ -394,4 +404,205 @@ When you wrote the above CSS code, the `footnote` also got the `font-weight: bol
 </div>
 ```
 
-Now, change the `p` selector to `.intro` - the CSS is now only applied to the long text. The code is [available on CodePen](http://codepen.io/kevingimbel/pen/GrzoWg).
+Now, change the `p` selector to `.intro` - the CSS is now only applied to the long text. The code is also [available on CodePen](http://codepen.io/kevingimbel/pen/GrzoWg) if you need to take a look.
+
+### Short writing style
+
+Some CSS `property: value` pairs can be written in a "short" version. If you want to apply a padding of `10px` to all sides of a `div` you can write the following CSS
+
+```css
+.mydiv {
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+}
+```
+
+or you can simply write the following
+
+```css
+.mydiv {
+  padding: 10px;
+}
+```
+
+writing `padding: 10px` will add the padding to all 4 sides (_top, right, bottom, left_). This way we only need to write one line instead of four. You can also combine all 4 values into one line!
+
+```css
+.mydiv {
+  padding: 10px 15px 20px 25px;
+  /*        ^    ^    ^    ^
+            |    |    |    | padding-left
+            |    |    | padding-bottom
+            |    | padding-right
+            | padding-top
+*/
+}
+```
+
+Or write two values for `top/bottom` and `left/right`, which looks like the following code
+
+```css
+.mydiv {
+  padding: 15px 20px;
+}
+```
+
+As you can see there are a lot of ways to add `padding` to an element - which way you you write is up to you. There are no downsides and all ways result in the same display on our websites. I recommend getting used to the shorter syntaxes, e.g. `padding: 10px;`, `padding: 10px 20px;` and only write the four lines when you have completely different values (which should not be too often).
+
+This short writing style works the same for `margin`. Try and add a new `p` element to your website. Give it a class of `test-margin`. Then, write some CSS to make it:
+
+- Have a margin of 10px on the `top`, `right`, `bottom`, and `left` sides
+- Have a margin of 5px on the `top` and `left`, and 15px on the `right` and `bottom` sides
+
+Try more margin and padding combinations and see how your element changes.
+
+### box model
+
+Understanding margin and padding and their relation to element sizes is important. `margin` creates space between the element and all other elements around it, `padding` creates space inside the element.
+
+This means an element with the CSS `width: 100px` and `padding: 10px` will not be 100px width but 120px. This happens because it is calculated as `100px + 10px + 10px = 120px`. The 10px are the padding on the right and left side which make the element grow.
+
+## Lab 4: Jekyll
+
+[Jekyll](https://jekyllrb.com) is a static site generator. Static site generators use HTML templates and files - for example Markdown files - to generate a website. They need to be "build" before the website can be used. To "build" the static site means to combine all the Markdown files with the templates. Jekyll is written in [Ruby](https://www.ruby-lang.org/) a programming language for multiple purposes like websites, web apps, and Command Line Tools (= Software that runs in a terminal, like `git`). Ruby is beyond the scope of this Workshop but it is an interesting language.
+
+### Installing Ruby and Jekyll
+
+Check if you have Ruby installed by running `ruby -v` inside a terminal. If you get any output that looks similar to the output below, you can skip the "Install Ruby" step below.
+
+```sh
+$ ruby -v
+ruby 2.4.0p0 (2016-12-24 revision 57164) [x86_64-darwin16]
+```
+
+#### Install Ruby
+
+Go to [https://www.ruby-lang.org/en/documentation/installation/](https://www.ruby-lang.org/en/documentation/installation/) and chose the way of installing Ruby for your operating system. If everything is installed, check if "gem" is installed by running `gem -v` inside a terminal. If is is not installed, install it as described below.
+
+#### Install RubyGems
+
+RubyGems is a package manager for Ruby. This means it can be used to download and install Ruby programs from the internet. Check if `gem` is installed by running `gem -v`. If you do not get an output as similar to the one shown below, install it as [described here](https://rubygems.org/pages/download).
+
+```sh
+$ gem -v
+2.6.8
+```
+
+If Ruby and RubyGems are installed you're good to go! We will now install Jekyll.
+
+### Install Jekyll
+
+To install Jekyll with RubyGems run the following command inside a terminal. If you are using Windows, follow the [instructions for installing Jekyll on Windows](https://jekyllrb.com/docs/windows/#installation).
+
+```sh
+$ gem install jekyll
+```
+
+### Liquid
+
+Jekyll uses [Liquid](http://shopify.github.io/liquid/), a template engine created by Shopify. A template engine is a program that allows  writing files with variables inside that will later be filled with content. By using a template engine we can re-use the templates when building our site. Instead of writing HTML over and over again, we only write it once and Jekyll works the magic of placing it in the right templates - this is a lot faster and easier to work with compared to having hundreds of files with HTML and content inside.
+
+### Front Matter
+
+Jekyll also uses a concept called ["Front Matter"](https://jekyllrb.com/docs/frontmatter/). Front Matter is a way of setting variables and meta data for every post and page we create. The Front Matter is always written at the top of the file and starts with `---` and ends with `---`. Inside the Front Matter you can set the title, layout, and date for example which looks like:
+
+```
+---
+layout: post
+title: My post
+date: 2017-02-15 18:40:31 +0100
+---
+```
+
+With this Front Matter the layout is set to "post" (which means, _"Use the post.html template"_), the title is set to `My post` and the date is set to `2017-02-15 18:40:31 +0100` which represents the date _15th February 2017 at 18:40:31_ in the time zone UTC+1. By specifying the complete date, we can later make use of advanced date formatting.
+
+For example, when your write the following template...
+
+```html
+<div>{% raw %}{{ content }}{% endraw %}</div>
+```
+
+... Liquid will replace the variable {% raw %}`{{ content }}`{% endraw %} with the content of your Markdown files. Jekyll has [a lot of variables](https://jekyllrb.com/docs/variables/) that can be used within the templates. Keep the variable page open, you might need to look at it again. Given a the template below...
+
+```html
+<div>{% raw %}
+<h1>{{ page.title }}</h1>
+<p>{{ content }}</p>{% endraw %}
+</div>
+```
+
+... and a markdown file with the content ...
+```
+---
+title: My first post
+---
+
+This is my first post!
+```
+... we get the following HTML
+
+```html
+<div>
+<h1>My first post</h1>
+<p>This is my first post!</p>
+</div>
+```
+
+Don't be scared if this seems overwhelming - it is! We will work through this together, if you have any questions ask me.
+
+### Get the example Jekyll project
+
+Using `git`, you can now checkout the example Jekyll code which we will use to create out first Jekyll site. Navigate into the `codingnight` directory and run the following git command.
+
+```sh
+$ git clone https://github.com/kevingimbel/codingnight-jekyll
+```
+
+Navigate into the new directory with `cd codingnight-jekyll` and start the Jekyll server with `bundle exec jekyll serve`. This will start the development server for Jekyll and publish the site on "localhost:4000". Open [localhost:4000](http://localhost:4000) inside a browser and you should see the new website. Open the new `codingnight-jekyll` folder in your text editor and start exploring the code. I wrote comments into most of the files to explain how things work together.
+
+Start making this website your own. Change the CSS, change the HTML templates and add your own content. Try adding a new blog post or creating a new page - I am here to answer questions and you can read the [Jekyll Documentation](https://jekyllrb.com/docs/home/) if you don't know how to change things.
+
+The file structure of the example site is shown below.
+
+Inside the `_includes` folder are files that will be included into other files - these are repeating  parts like the footer and header which are used in every site.
+
+Inside the `_layouts` directory we have 4 files that represent each type of template. The `home.html` template is a special template for the Home Page, the `page.html` template is used for all pages like [localhost:4000/about/](http://localhost:4000/about/). `post.html` is used for all blog posts which are stored inside `_posts` and `default.html` is the basis of all templates.
+
+Inside `assets/css/` is our `style.css` file. Inside this file all CSS for the website is stored. Take a look and make some changes, see what happens to your website. Adjust the CSS and add new rules until you like your website!
+
+The `_config.yml` file is used for all configurations. It has [a lot of options](https://jekyllrb.com/docs/configuration/). Whenever you make a change to the `_config.yml` file you need to stop the Jekyll Server.
+```
+├── _config.yml
+├── _includes
+│   ├── footer.html
+│   ├── head.html
+│   └── header.html
+├── _layouts
+│   ├── default.html
+│   ├── home.html
+│   ├── page.html
+│   └── post.html
+├── _posts
+│   └── 2017-02-15-my-first-post.md
+├── about.md
+├── assets
+│   └── css
+│       └── style.css
+└── index.md
+```
+
+### Publish your site
+
+When you are done with your website - or the time is close to finish - you can publish your website to GitHub. Create a new GitHub repository named `username.github.io`. In my case this repo is named `kevingimbel.github.io`.
+
+Run the below git command in your terminal
+```sh
+$ git remote set-url https://github.com/username/username.github.io
+```
+_Note: (change `username` to your username)_
+
+This updates the "remote" to point to your GitHub repository. Add all your changes and push them to GitHub. Your website is now available at `https://username.github.io`.
+
+Congratulations, your first website is on the internet! 🎉 You can start writing a blog now and document your way of learning about programming or write about other things you like. 

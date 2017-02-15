@@ -19,7 +19,7 @@ description: > # this means to ignore newlines until "baseurl:"
   Resources for workshops. Fell free to follow any lab or report issues
   on GitHub.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://lab.kevingimbel.me" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: _kevinatari
 github_username:  kevingimbel
 
