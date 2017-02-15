@@ -601,8 +601,8 @@ Run the below git command in your terminal
 ```sh
 $ git remote set-url https://github.com/username/username.github.io
 ```
-_Note: (change `username` to your username)_
+_Note: change `username` to your username_
 
 This updates the "remote" to point to your GitHub repository. Add all your changes and push them to GitHub. Your website is now available at `https://username.github.io`.
 
-Congratulations, your first website is on the internet! 🎉 You can start writing a blog now and document your way of learning about programming or write about other things you like. 
+Congratulations, your first website is on the internet! 🎉 You can start writing a blog now and document your way of learning about programming or write about other things you like.
