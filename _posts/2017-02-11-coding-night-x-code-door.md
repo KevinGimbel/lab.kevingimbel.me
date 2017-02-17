@@ -371,7 +371,7 @@ Next, write some CSS so the following conditions are met:
 
 - The whole website should use the `Arial` `font-family`
 - The `.content` has the background color `#ddeeaa`
-- The `.content` has a `padding` of `10px` on all sites
+- The `.content` has a `padding` of `10px` on all sides
 - The headline, _"Learning CSS"_, uses a `font-size` of `32px`
 - The second headline, _"Styling websites"_, has a `#acc` background and `5px` `padding`
 
