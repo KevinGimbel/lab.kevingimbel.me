@@ -10,6 +10,8 @@ and Jekyll". In this workshop you will get an overview of HTML and CSS, git and
 GitHub and Jekyll, a static site generator. This lab website is made with Jekyll
 as well.
 
+We will use the Terminal for this course - you can read more about [using the terminal here](/resources/terminal/).
+
 ## Lab 1: Installing git
 
 [Git](https://git-scm.com) is a version control system used by software
@@ -550,7 +552,7 @@ This is my first post!
 </div>
 ```
 
-Don't be scared if this seems overwhelming - it is! We will work through this together, if you have any questions ask me.
+Don't be scared if this seems overwhelming - it is! We will work through this together, if you have any questions ask me. You can also read the [Liquid Documentation on GitHub](https://github.com/Shopify/liquid/wiki/Liquid-for-Designers).
 
 ### Get the example Jekyll project
 
